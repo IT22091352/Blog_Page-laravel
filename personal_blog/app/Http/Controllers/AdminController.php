@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -20,13 +21,19 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // Remove base64 decoding for image URL
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $data['image'] = $path;
+        }
         $this->post->create($data);
         return redirect()->route('home');
     }
     public function delete($post_id)
     {
         $post = $this->post->find($post_id);
+        if ($post->image) {
+            Storage::disk('public')->delete($post->image);
+        }
         $post->delete();
         return redirect()->back();
     }
@@ -34,6 +41,13 @@ class AdminController extends Controller
     {
         $data = $request->all();
         $post = $this->post->find($post_id);
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $path = $request->file('image')->store('images', 'public');
+            $data['image'] = $path;
+        }
         $post->update($data);
         return redirect()->back();
     }

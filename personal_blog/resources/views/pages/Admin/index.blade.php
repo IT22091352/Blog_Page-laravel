@@ -62,7 +62,7 @@
 
                     <!-- Update Modal -->
                     <div class="modal fade" id="updateModal{{ $post->id }}" tabindex="-1" aria-labelledby="updateModalLabel{{ $post->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg"> <!-- Add modal-lg class for larger width -->
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="updateModalLabel{{ $post->id }}">Update Post</h5>
@@ -171,6 +171,11 @@
     }
     .modal-footer {
         border-top: none;
+    }
+    .modal-dialog{
+        width: 800px;
+        border-radius: 40px;
+
     }
 </style>
 @endpush

@@ -13,9 +13,18 @@ class HomeController extends Controller
         $this->post = new Posts();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $response['posts'] = $this->post->all();
+        $query = $request->input('query');
+        if ($query) {
+            $posts = $this->post->where('title', 'LIKE', "%{$query}%")
+                                ->orWhere('content', 'LIKE', "%{$query}%")
+                                ->orWhere('author', 'LIKE', "%{$query}%")
+                                ->get();
+        } else {
+            $posts = $this->post->all();
+        }
+        $response['posts'] = $posts;
         return view('pages.Home.index')->with($response);
     }
 }
