@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTableV2 extends Migration // Ensure this class name is unique
+class CreatePostsTableV2 extends Migration 
 {
     public function up()
     {
@@ -12,7 +12,7 @@ class CreatePostsTableV2 extends Migration // Ensure this class name is unique
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->text('image'); // Change from string to text
+            $table->text('image');
             $table->text('content');
             $table->timestamps();
         });

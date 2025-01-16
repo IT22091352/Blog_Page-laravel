@@ -13,6 +13,8 @@ class HomeController extends Controller
         $this->post = new Posts();
     }
 
+
+    //search function created
     public function index(Request $request)
     {
         $query = $request->input('query');

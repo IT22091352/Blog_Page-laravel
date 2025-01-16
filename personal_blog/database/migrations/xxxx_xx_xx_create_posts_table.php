@@ -12,7 +12,7 @@ class CreateUniquePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->longText('image'); // Change from text to longText
+            $table->longText('image'); 
             $table->text('content');
             $table->timestamps();
         });

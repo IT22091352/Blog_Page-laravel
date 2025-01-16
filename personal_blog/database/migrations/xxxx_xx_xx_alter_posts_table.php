@@ -9,14 +9,14 @@ class AlterPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->longText('image')->change(); // Change from text to longText
+            $table->longText('image')->change();
         });
     }
 
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->text('image')->change(); // Revert back to text if needed
+            $table->text('image')->change(); 
         });
     }
 }
